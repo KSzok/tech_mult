@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #baner {
+        height: 300px;
+        width: 600px;
+        margin: auto;
+        text-align: center;
+        background-color: blue;
+        color: white;
+        padding: 30px;
+        font-size: 20px;
+        margin-top: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea name="tekst" id="text" cols="30" rows="10"></textarea>
+    <button>Powiększ i ukryj</button>
+    <div id="baner" style="display:none"><p></p></div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $("#text").keyup(function() {
+        $("#baner").fadeIn();
+        $("#baner>p").text($("#text").val());
+      });
+      $("button").click(function() {
+        $("#baner>p").animate(
+          { fontSize: "50px", opacity: 0 },
+          2000,
+          function() {
+            $("#baner>p")
+              .text("")
+              .css({ opacity: 1, fontSize: "20px" });
+            $("#text").val("");
+            $("#baner").fadeOut();
+          }
+        );
+      });
+    </script>
+  </body>
+</html>

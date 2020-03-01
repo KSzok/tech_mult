@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #wykres {
+        position: relative;
+        height: 200px;
+        width: 500px;
+        border: 1px solid black;
+        margin-top: 25px;
+        border-top: 0;
+        border-right: 0;
+        background-color: #eee;
+        margin-left: 50px;
+      }
+      #wykres > div {
+        position: absolute;
+        bottom: 0;
+        height: 0%;
+        left: 25px;
+        width: 50px;
+        background-color: black;
+      }
+      #wykres > div:nth-of-type(2) {
+        left: 100px;
+      }
+      #wykres > div:nth-of-type(3) {
+        left: 175px;
+      }
+      #wykres > div:nth-of-type(4) {
+        left: 250px;
+      }
+      #wykres > p {
+        position: absolute;
+        margin: 0;
+        left: -50px;
+        top: -8px;
+      }
+      #wykres > p:nth-of-type(2) {
+        left: -40px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      #wykres > p:nth-of-type(3) {
+        left: -35px;
+        top: auto;
+        bottom: -8px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="number" name="czas" id="czas" min="1" max="10" value="1" />
+    <button>Wykres</button>
+    <div id="wykres">
+      <p>100 %</p>
+      <p>50%</p>
+      <p>0 %</p>
+      <div wysokosc="50%"></div>
+      <div wysokosc="60%"></div>
+      <div wysokosc="40%"></div>
+      <div wysokosc="70%"></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $("button").click(function() {
+        $("#wykres>div").each(function() {
+          $(this).animate(
+            { height: $(this).attr("wysokosc") },
+            $("#czas").val() * 1000
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

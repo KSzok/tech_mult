@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #kontener {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        position: relative;
+      }
+      div > div {
+        height: 100px;
+        width: 100px;
+        background-color: #ccc;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      div > div:nth-child(2) {
+        top: 100px;
+      }
+      div > div:nth-child(3) {
+        top: 200px;
+      }
+      #d2 {
+        background-color: #777;
+      }
+      #d3 {
+        background-color: #444;
+      }
+      p {
+        text-align: center;
+        opacity: 0;
+        font-weight: bold;
+        font-size: 40px;
+        margin: 0;
+      }
+      div:hover > p {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Animacja</button>
+    <div id="kontener">
+      <div id="d1">
+        <p>/\</p>
+      </div>
+      <div id="d2">
+        <p>/\</p>
+      </div>
+      <div id="d3">
+        <p>/\</p>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $("button").click(function() {
+        console.log($("#d1").css("left"));
+        if ($("#d1").css("left") === "0px") {
+          $("#d1").animate({ left: "400px" }, 400, function() {
+            $("#d2").animate({ left: "400px" }, 400, function() {
+              $("#d3").animate({ left: "400px" }, 400);
+            });
+          });
+        } else {
+          $("#d1").animate({ left: "0px" }, 400, function() {
+            $("#d2").animate({ left: "0px" }, 400, function() {
+              $("#d3").animate({ left: "0px" }, 400);
+            });
+          });
+        }
+      });
+      $("div>div").click(function() {
+        $(this).insertBefore($(this).prev("div>div"));
+      });
+    </script>
+  </body>
+</html>

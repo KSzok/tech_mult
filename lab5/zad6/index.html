@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea
+      name="tekst"
+      id="text"
+      cols="30"
+      rows="10"
+      maxlength="200"
+    ></textarea>
+    <p>Pozostało znaków: <span id="dlugosc">200</span></p>
+    <button id="wstaw">Wstaw do div-a</button>
+    <button id="usun">Wyczyść</button>
+    <div></div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $("#wstaw").click(function() {
+        let tekst = $("#text").val();
+        let nowyTekst = $("div").html() + tekst;
+        $("div").html(nowyTekst);
+        $("#text").val("");
+        $("#dlugosc").html(200);
+      });
+      $("#usun").click(function() {
+        $("div").html("");
+      });
+      $("#text").keyup(function() {
+        let tekst = $("#text").val();
+        let dlugosc = tekst.length;
+        $("#dlugosc").html(200 - dlugosc);
+      });
+    </script>
+  </body>
+</html>
